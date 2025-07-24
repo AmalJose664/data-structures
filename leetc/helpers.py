@@ -139,17 +139,19 @@ def read4(buf4: list) -> int:
 
 def print_array_with_pointers(arr, l, r, endStr="", showLR=False):
 	N=len(arr)
-	L=R="^"
+	
 	if showLR:
 		L="L"
 		R="R"
+	else:
+		L=R="^"
 	for num in arr:
 		print(f"{num:>2}", end=" ")
 	print(endStr)
 
 	for i in range(N):
 		if i == l and i == r:
-			print("^^", end=" ")
+			print(f"{L}{R}", end=" ")
 		elif i == l:
 			print(f" {L}", end=" ")
 		elif i == r:
@@ -157,7 +159,7 @@ def print_array_with_pointers(arr, l, r, endStr="", showLR=False):
 		else:
 			print("  ", end=" ")
 	print("")
-	print("-"*N*3)
+	print(f"|{'-'*((N*3)-2)}|")
 
 
 def print_tree_vertical(root):

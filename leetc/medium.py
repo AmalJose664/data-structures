@@ -7,7 +7,7 @@ import sys
 import os
 import time
 
-from helpers import ListNode, buildNodes, leetcode_output, showNodes
+from helpers import ListNode, buildNodes, leetcode_output, print_array_with_pointers, showNodes
 sys.path.append(os.path.dirname(__file__)) 
 
 class MediumSolution(object):
@@ -624,13 +624,19 @@ class MediumSolution(object):
 	def jump(self, nums):
 		# 45
 		print(nums)
-		N=len(nums)
-		def recurse(n):
-			if n==N:
-				return
-			print(n)
-			recurse(n + 1)
-		recurse(0)
+		l =r =0
+		res=0
+		while r < len(nums)-1:
+			farthest = 0
+			for i in range(l, r+1):
+				farthest = max(farthest, i+nums[i])
+			l = r+1
+			r = farthest
+			res+=1
+		return res
+
+
+
 
 
 
@@ -640,7 +646,7 @@ s = MediumSolution()
 # Problems till now 3600
 test_arg1 = [2,3,1,1,4]
 test_arg2 = [2,3,0,1,4]
-passes = test_arg1
+passes =  [2, 3, 1, 1, 4, 2, 1, 5, 1, 2, 3, 1, 1, 1, 6, 1, 2, 1, 1]
 leetcode_output( 45, s.jump,passes) #  // Output: 2
 # print()
 
