@@ -672,6 +672,48 @@ class MediumSolution(object):
 		print()
 		return r
 
+	def permuteUnique(self, nums):
+		# 47
+		print(nums)
+		res = []
+		perms = []
+		count = {}
+		for n in nums:
+			count[n] = count.get(n,0)+1
+		print(count)
+		def dfs():
+			print("function call")
+			print(perms)
+			if len(perms) == len(nums):
+				res.append(perms.copy())
+				return
+			for n in count:
+				if count[n]>0:
+					perms.append(n)
+					count[n] -=1
+					dfs()
+					count[n] +=1
+					perms.pop()
+		dfs()
+		return res
+		
+		sett = set()
+		def backtrack(listt):
+			if len(listt) == 0:
+				return [[]]
+			perms = backtrack(listt[1:])
+			res =[ ]
+			for p in perms:
+				for i in range(len(p)+1):
+					copy = p.copy()
+					copy.insert(i, listt[0])
+					tu = tuple(copy)
+					if tu not in sett or True:
+						res.append(copy)
+						sett.add(tu)
+			return res
+		r = backtrack(nums)
+		return r
 	
 
 
@@ -680,10 +722,10 @@ s = MediumSolution()
 
 
 # Problems till now 3600
-test_arg1 = [1,2,3,4]
+test_arg1 = [1,1,2]
 test_arg2 = [2,3,0,1,4]
 passes =  test_arg1
-leetcode_output( 46, s.permute, passes) #  // Output: 2
+leetcode_output( 46, s.permuteUnique, passes) #  // Output: [[1, 2, 3], [2, 1, 3], [2, 3, 1], [1, 3, 2], [3, 1, 2], [3, 2, 1]]
 # print()
 
 
@@ -715,3 +757,4 @@ leetcode_output( 46, s.permute, passes) #  // Output: 2
 # leetcode_output( 40, s.combinationSum2,[10,1,2,7,6,1,5], 8) #  // Output: [[1,1,6],[1,2,5],[1,7],[2,6]]
 # leetcode_output( 43, s.multiply,'10', '20') #  // Output: '200'
 # leetcode_output( 45, s.jump,[2,3,1,1,4]) #  // Output: 2
+# leetcode_output( 46, s.permute, [1,2,3]) #  // Output: [[1, 2, 3], [2, 1, 3], [2, 3, 1], [1, 3, 2], [3, 1, 2], [3, 2, 1]]
