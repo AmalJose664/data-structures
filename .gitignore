@@ -1,2 +1,6 @@
 ./leetc/__pycache__
 ./leetc/__pycache__/*
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
