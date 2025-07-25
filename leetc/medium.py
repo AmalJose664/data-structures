@@ -7,7 +7,7 @@ import sys
 import os
 import time
 
-from helpers import ListNode, buildNodes, leetcode_output, print_array_with_pointers, showNodes
+from helpers import ListNode, buildNodes, leetcode_output, print_array_with_pointers, showNodes, print_matrix
 sys.path.append(os.path.dirname(__file__)) 
 
 class MediumSolution(object):
@@ -715,6 +715,23 @@ class MediumSolution(object):
 		r = backtrack(nums)
 		return r
 	
+	def rotate(self, matrix):
+		N = len(matrix)
+		print_matrix(matrix)
+		print("------------------Real")
+		
+
+		
+		for i in range(N):
+			for j in range(i+1,N):
+				matrix[i][j],matrix[j][i] = matrix[j][i],matrix[i][j]
+				# print(i,j , f" == [{matrix[i][j]}] >> [{matrix[j][i]}]", j, i)
+		for i in range(N):
+			matrix[i].reverse()
+		
+		print_matrix(matrix)	
+		print("------------------")
+		return matrix
 
 
 
@@ -722,10 +739,10 @@ s = MediumSolution()
 
 
 # Problems till now 3600
-test_arg1 = [1,1,2]
-test_arg2 = [2,3,0,1,4]
+test_arg1 = [[1,2,3],[4,5,6],[7,8,9]]
+test_arg2 = [[7,4,1],[8,5,2],[9,6,3]]
 passes =  test_arg1
-leetcode_output( 46, s.permuteUnique, passes) #  // Output: [[1, 2, 3], [2, 1, 3], [2, 3, 1], [1, 3, 2], [3, 1, 2], [3, 2, 1]]
+leetcode_output( 48, s.rotate,passes ) #  // Output: [[7,4,1],[8,5,2],[9,6,3]]
 # print()
 
 
@@ -758,3 +775,4 @@ leetcode_output( 46, s.permuteUnique, passes) #  // Output: [[1, 2, 3], [2, 1, 3
 # leetcode_output( 43, s.multiply,'10', '20') #  // Output: '200'
 # leetcode_output( 45, s.jump,[2,3,1,1,4]) #  // Output: 2
 # leetcode_output( 46, s.permute, [1,2,3]) #  // Output: [[1, 2, 3], [2, 1, 3], [2, 3, 1], [1, 3, 2], [3, 1, 2], [3, 2, 1]]
+# leetcode_output( 47, s.permuteUnique, [1,1,2]) #  // Output:  [[1, 1, 2], [1, 2, 1], [2, 1, 1]]

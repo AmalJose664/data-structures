@@ -26,6 +26,7 @@ def leetcode_output(number, output, *args, **kwargs):
 	start = time.time()
 	out = output(*args, **kwargs)
 	end = time.time() - start 
+	print()
 	print(f"Result = ", out)
 	print(f"\nTime Took = {str(end*1000)[:6]} ms")
 	print("Problem No. ",number)
@@ -161,6 +162,13 @@ def print_array_with_pointers(arr, l, r, endStr="", showLR=False):
 	print("")
 	print(f"|{'-'*((N*3)-2)}|")
 
+
+def print_matrix(matrix):
+	N = len(matrix)
+	for i in range(N):
+		for j in range(N):
+			print(matrix[i][j], end=" ")
+		print()
 
 def print_tree_vertical(root):
 	def _display_aux(root):
