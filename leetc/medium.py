@@ -1,7 +1,7 @@
 
 import bisect
 import collections
-from itertools import groupby
+from itertools import count, groupby
 import math
 import sys
 import os
@@ -733,16 +733,40 @@ class MediumSolution(object):
 		print("------------------")
 		return matrix
 
+	def groupAnagrams(self,strs):
+		# 49
+		d= {}
+		for s in strs:
+			j = "".join(sorted(s))
+			if j in d:
+				d[j].append(s)
+			else:
+				d[j] = [s]
+		
+		return d.values()
+	
+		res = collections.defaultdict(list)
+		for s in strs:
+			count = [0]*26
+			for c in s:
+				count[ord(c) - ord('a')] +=1
+			res[tuple(count)].append(s)
+		# print(res)
+		return res.values()
+
+
+
+
 
 
 s = MediumSolution()
 
 
 # Problems till now 3600
-test_arg1 = [[1,2,3],[4,5,6],[7,8,9]]
-test_arg2 = [[7,4,1],[8,5,2],[9,6,3]]
-passes =  test_arg1
-leetcode_output( 48, s.rotate,passes ) #  // Output: [[7,4,1],[8,5,2],[9,6,3]]
+test_arg1 = ["eat","tea","tan","ate","nat","bat"]
+test_arg2 = ['','']
+passes =  test_arg2
+leetcode_output( 49, s.groupAnagrams,passes ) #  // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 # print()
 
 
@@ -776,3 +800,5 @@ leetcode_output( 48, s.rotate,passes ) #  // Output: [[7,4,1],[8,5,2],[9,6,3]]
 # leetcode_output( 45, s.jump,[2,3,1,1,4]) #  // Output: 2
 # leetcode_output( 46, s.permute, [1,2,3]) #  // Output: [[1, 2, 3], [2, 1, 3], [2, 3, 1], [1, 3, 2], [3, 1, 2], [3, 2, 1]]
 # leetcode_output( 47, s.permuteUnique, [1,1,2]) #  // Output:  [[1, 1, 2], [1, 2, 1], [2, 1, 1]]
+# leetcode_output( 48, s.rotate,[[1,2,3],[4,5,6],[7,8,9]] ) #  // Output: [[7,4,1],[8,5,2],[9,6,3]]
+# leetcode_output( 49, s.groupAnagrams,["eat","tea","tan","ate","nat","bat"] ) #  // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
