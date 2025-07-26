@@ -775,14 +775,17 @@ class MediumSolution(object):
 	
 
 
+
+
+
 s = MediumSolution()
 
 
-# Problems till now 3600
-test_arg1 = float(2)
-test_arg2 = -2
+# Problems till now 3626
+test_arg1 = 4
+test_arg2 = 0
 passes =  test_arg1
-leetcode_output( 50, s.myPow,passes, test_arg2 ) #  // Output: .25
+leetcode_output( 50, s.solveNQueens,passes ) #  // Output: [[".Q..","...Q","Q...","..Q."]
 # print()
 
 

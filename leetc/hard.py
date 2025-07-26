@@ -3,7 +3,7 @@ import sys
 import os
 import time
 
-from helpers import ListNode, buildNodes, leetcode_output, print_array_with_pointers, showNodes
+from helpers import ListNode, buildNodes, leetcode_output, print_array_with_pointers, print_matrix, showNodes
 sys.path.append(os.path.dirname(__file__)) 
 
 class HardSolution(object):
@@ -340,18 +340,76 @@ class HardSolution(object):
 				
 		return ismatch(0,0)
 			
-	
+	def solveNQueens(self, n):
+		# 51
+		print(n)
+		board = [["." for _ in range(n)] for _ in range(n)]
+		cols = set()
+		posDia = set()
+		negDia = set()
+		
+		res=[]
+		print_matrix(board)
+		def place(r):
+			if r==n:
+				copy = ["".join(row) for row in board ]
+				res.append(copy)
+				return
+			
+			for c in range(n):
+				if c in cols or r+c in posDia or r-c in negDia:
+					continue
+				cols.add(c)
+				posDia.add(r+c)
+				negDia.add(r-c)
+				board[r][c] = "Q"
+
+				place(r+1)
+				cols.remove(c)
+				posDia.remove(r+c)
+				negDia.remove(r-c)
+				board[r][c] = "."
+		place(0)
+		
+		return res
+		
+	def totalNQueens(self, n):
+		# 52
+		board = [[''] * n for _ in range(n)]
+
+		cols = set()
+		posDia = set()
+		negDia = set()
+
+		res = [0]
+		def place(r):
+			if r==n:
+				res[0]+=1
+			for c in range(n):
+				if c in cols or r+c in posDia or r-c in negDia:
+					continue
+				board[r][c] = "Q"
+				negDia.add(r-c)
+				posDia.add(r+c)
+				cols.add(c)
+				place(r+1)
+				board[r][c] = "."
+				negDia.remove(r-c)
+				posDia.remove(r+c)
+				cols.remove(c)
+
+		place(0)
+		return res[0]
 
 
 
 
 s = HardSolution()
 
-test_arg1 = 0
+test_arg1 = 4
 test_arg2 = ['b',"*?*?"]
 passes = test_arg1
-out = leetcode_output( 44, s.isMatch2, "adceb", "*a*b" ) #  // Output:  True
-out = leetcode_output( 44, s.isMatch2, "adceb", "*a*b" ) #  // Output:  True
+leetcode_output( 51, s.totalNQueens ,passes ) #  // Output: 2
 # print(out)
 
 
@@ -370,3 +428,5 @@ out = leetcode_output( 44, s.isMatch2, "adceb", "*a*b" ) #  // Output:  True
 # out = leetcode_output( 37, s.solveSudoku, [[".",".",".",".",".",".",".",".","."],[".","9",".",".","1",".",".","3","."],[".",".","6",".","2",".","7",".","."],[".",".",".","3",".","4",".",".","."],["2","1",".",".",".",".",".","9","8"],[".",".",".",".",".",".",".",".","."],[".",".","2","5",".","6","4",".","."],[".","8",".",".",".",".",".","1","."],[".",".",".",".",".",".",".",".","."]]) #  // Output:  [['7', '2', '1', '8', '5', '3', '9', '4', '6'], ['4', '9', '5', '6', '1', '7', '8', '3', '2'], ['8', '3', '6', '4', '2', '9', '7', '5', '1'], ['9', '6', '7', '3', '8', '4', '1', '2', '5'], ['2', '1', '4', '7', '6', '5', '3', '9', '8'], ['3', '5', '8', '2', '9', '1', '6', '7', '4'], ['1', '7', '2', '5', '3', '6', '4', '8', '9'], ['6', '8', '3', '9', '4', '2', '5', '1', '7'], ['5', '4', '9', '1', '7', '8', '2', '6', '3']]
 # out = leetcode_output( 41, s.firstMissingPositive, [1,2,0] ) #  // Output:  3
 # out = leetcode_output( 42, s.trap, [0,1,0,2,1,0,1,3,2,1,2,1]) #  // Output:  6
+# out = leetcode_output( 44, s.isMatch2, "adceb", "*a*b" ) #  // Output:  True
+# leetcode_output( 51, s.solveNQueens, 4 ) #  // Output: [[".Q..","...Q","Q...","..Q."]
