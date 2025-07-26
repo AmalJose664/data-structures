@@ -28,7 +28,8 @@ def leetcode_output(number, output, *args, **kwargs):
 	end = time.time() - start 
 	print()
 	print(f"Result = ", out)
-	print(f"\nTime Took = {str(end*1000)[:6]} ms")
+	t=str(end*1000)[:6]
+	print(f"\nTime Took = {t} ms")
 	print("Problem No. ",number)
 	print("\n--------------------------END-----------------------------\n\n")
 	return out

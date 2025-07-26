@@ -754,19 +754,35 @@ class MediumSolution(object):
 		# print(res)
 		return res.values()
 
+	def myPow(self, x, n):
+		
+		def power(val, pow):
+			if val == 0:
+				return 0
+			if pow == 0:
+				return 1
+			
+			re = power(val, pow // 2)
+			re = re * re
+			print(re)
+			return val * re if pow%2 else re
 
-
-
+			
+		res = power(x,abs(n))
+		
+		return res if n>=0 else 1 /res 
+		
+	
 
 
 s = MediumSolution()
 
 
 # Problems till now 3600
-test_arg1 = ["eat","tea","tan","ate","nat","bat"]
-test_arg2 = ['','']
-passes =  test_arg2
-leetcode_output( 49, s.groupAnagrams,passes ) #  // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+test_arg1 = float(2)
+test_arg2 = -2
+passes =  test_arg1
+leetcode_output( 50, s.myPow,passes, test_arg2 ) #  // Output: .25
 # print()
 
 
@@ -802,3 +818,4 @@ leetcode_output( 49, s.groupAnagrams,passes ) #  // Output: [["bat"],["nat","tan
 # leetcode_output( 47, s.permuteUnique, [1,1,2]) #  // Output:  [[1, 1, 2], [1, 2, 1], [2, 1, 1]]
 # leetcode_output( 48, s.rotate,[[1,2,3],[4,5,6],[7,8,9]] ) #  // Output: [[7,4,1],[8,5,2],[9,6,3]]
 # leetcode_output( 49, s.groupAnagrams,["eat","tea","tan","ate","nat","bat"] ) #  // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+# leetcode_output( 50, s.myPow,float(2), -2) #  // Output: .25
