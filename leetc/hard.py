@@ -409,7 +409,7 @@ s = HardSolution()
 test_arg1 = 4
 test_arg2 = ['b',"*?*?"]
 passes = test_arg1
-leetcode_output( 51, s.totalNQueens ,passes ) #  // Output: 2
+leetcode_output( 51, s.totalNQueens ,4 ) #  // Output: 2
 # print(out)
 
 
@@ -430,3 +430,4 @@ leetcode_output( 51, s.totalNQueens ,passes ) #  // Output: 2
 # out = leetcode_output( 42, s.trap, [0,1,0,2,1,0,1,3,2,1,2,1]) #  // Output:  6
 # out = leetcode_output( 44, s.isMatch2, "adceb", "*a*b" ) #  // Output:  True
 # leetcode_output( 51, s.solveNQueens, 4 ) #  // Output: [[".Q..","...Q","Q...","..Q."]
+# leetcode_output( 51, s.totalNQueens ,4 ) #  // Output: 2

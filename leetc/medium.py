@@ -772,7 +772,28 @@ class MediumSolution(object):
 		
 		return res if n>=0 else 1 /res 
 		
+	def maxSubArray(self,nums):
+		# 53
+		
+		print(nums)
+		maxx = nums[0]
+		curSum = 0
+		for n in nums:
+			if curSum<0:
+				curSum =0
+			curSum+=n
+			maxx = max(curSum, maxx)
+			print(maxx, curSum, n)
+
+		return maxx
+		print(maxx)
 	
+	def spiralOrder(self, matrix):
+		# 54
+		print(matrix)
+
+		
+
 
 
 
@@ -782,10 +803,10 @@ s = MediumSolution()
 
 
 # Problems till now 3626
-test_arg1 = 4
-test_arg2 = 0
+test_arg1 =  [[1,2,3],[4,5,6],[7,8,9]]
+test_arg2 = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 passes =  test_arg1
-leetcode_output( 50, s.solveNQueens,passes ) #  // Output: [[".Q..","...Q","Q...","..Q."]
+leetcode_output( 54, s.spiralOrder,passes ) #  // Output: [1,2,3,6,9,8,7,4,5]
 # print()
 
 
@@ -822,3 +843,4 @@ leetcode_output( 50, s.solveNQueens,passes ) #  // Output: [[".Q..","...Q","Q...
 # leetcode_output( 48, s.rotate,[[1,2,3],[4,5,6],[7,8,9]] ) #  // Output: [[7,4,1],[8,5,2],[9,6,3]]
 # leetcode_output( 49, s.groupAnagrams,["eat","tea","tan","ate","nat","bat"] ) #  // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 # leetcode_output( 50, s.myPow,float(2), -2) #  // Output: .25
+# leetcode_output( 53, s.maxSubArray,[-2,1,-3,4,-1,2,1,-5,4] ) #  // Output: 6 
