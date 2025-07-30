@@ -165,9 +165,9 @@ def print_array_with_pointers(arr, l, r, endStr="", showLR=False):
 
 
 def print_matrix(matrix):
-	N = len(matrix)
-	for i in range(N):
-		for j in range(N):
+	
+	for i in range(len(matrix)):
+		for j in range(len(matrix[i])):
 			print(matrix[i][j], end=" ")
 		print()
 

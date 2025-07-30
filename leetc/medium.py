@@ -790,9 +790,31 @@ class MediumSolution(object):
 	
 	def spiralOrder(self, matrix):
 		# 54
-		print(matrix)
+		if not matrix:
+			return []
+		print_matrix(matrix)
+		res = []
+		l , r = 0 , len(matrix[0])
+		t, b = 0, len(matrix)
 
-		
+		while l < r and t < b:
+			for i in range(l ,r):
+				res.append(matrix[t][i])
+			t+=1
+			for i in range(t, b):
+				res.append(matrix[i][r-1])
+			r-=1
+			
+			if not (l < r and t < b):
+				break
+
+			for i in range(r-1, l-1, -1):
+				res.append(matrix[b-1][i])
+			b-=1
+			for i in range(b-1, t-1, -1):
+				res.append(matrix[i][l])
+			l+=1
+		return res
 
 
 
@@ -802,10 +824,11 @@ class MediumSolution(object):
 s = MediumSolution()
 
 
+
 # Problems till now 3626
 test_arg1 =  [[1,2,3],[4,5,6],[7,8,9]]
-test_arg2 = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
-passes =  test_arg1
+test_arg2 = [[1,2,3,4,99, 98],[5,6,7,8, 33,31],[9,10,11,12,13,15], [91,92,93,94,95,96]]
+passes =  test_arg2
 leetcode_output( 54, s.spiralOrder,passes ) #  // Output: [1,2,3,6,9,8,7,4,5]
 # print()
 
