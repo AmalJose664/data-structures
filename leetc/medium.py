@@ -816,6 +816,21 @@ class MediumSolution(object):
 			l+=1
 		return res
 
+	def canJump(self, nums):
+		# 55
+		print(nums)
+		l = r = 0 
+		while r<len(nums) -1:
+			far = 0
+			for i in range(l, r+1):
+				far = max(far, i+nums[i])
+			if far==0:
+				return False
+			l = r+1
+			r = far
+		return True
+		
+	
 
 
 
@@ -826,10 +841,10 @@ s = MediumSolution()
 
 
 # Problems till now 3626
-test_arg1 =  [[1,2,3],[4,5,6],[7,8,9]]
-test_arg2 = [[1,2,3,4,99, 98],[5,6,7,8, 33,31],[9,10,11,12,13,15], [91,92,93,94,95,96]]
+test_arg1 =  [2,3,1,1,4]
+test_arg2 = [3,2,1,0,4] 
 passes =  test_arg2
-leetcode_output( 54, s.spiralOrder,passes ) #  // Output: [1,2,3,6,9,8,7,4,5]
+leetcode_output( 55, s.canJump ,passes ) #  // Output: [1,2,3,6,9,8,7,4,5]
 # print()
 
 
@@ -867,3 +882,5 @@ leetcode_output( 54, s.spiralOrder,passes ) #  // Output: [1,2,3,6,9,8,7,4,5]
 # leetcode_output( 49, s.groupAnagrams,["eat","tea","tan","ate","nat","bat"] ) #  // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 # leetcode_output( 50, s.myPow,float(2), -2) #  // Output: .25
 # leetcode_output( 53, s.maxSubArray,[-2,1,-3,4,-1,2,1,-5,4] ) #  // Output: 6 
+# leetcode_output( 54, s.spiralOrder,[[1,2,3],[4,5,6],[7,8,9]]) #  // Output: [1,2,3,6,9,8,7,4,5]
+
