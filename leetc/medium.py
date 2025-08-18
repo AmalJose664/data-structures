@@ -830,7 +830,23 @@ class MediumSolution(object):
 			r = far
 		return True
 		
-	
+	def merge(self,intervals):
+		# 56
+		print(intervals)
+		intervals.sort(key = lambda x:x[0])
+		output = [intervals[0]]
+
+		for i in range(1, len(intervals)):
+			start = intervals[i][0]
+			end = intervals[i][1]
+			lastEnd = output[-1][1] 
+			if start<=lastEnd:
+				output[-1][1] = max(lastEnd, end)
+			else:
+				output.append([start, end])
+		return output
+		
+
 
 
 
@@ -841,10 +857,10 @@ s = MediumSolution()
 
 
 # Problems till now 3626
-test_arg1 =  [2,3,1,1,4]
-test_arg2 = [3,2,1,0,4] 
+test_arg1 =  [[1,3],[2,9],[8,10],[15,18]]
+test_arg2 = [[1,4],[0,0]]
 passes =  test_arg2
-leetcode_output( 55, s.canJump ,passes ) #  // Output: [1,2,3,6,9,8,7,4,5]
+leetcode_output( 56, s.merge,passes) #  // Output: [[1,6],[8,10],[15,18]]
 # print()
 
 
@@ -883,4 +899,4 @@ leetcode_output( 55, s.canJump ,passes ) #  // Output: [1,2,3,6,9,8,7,4,5]
 # leetcode_output( 50, s.myPow,float(2), -2) #  // Output: .25
 # leetcode_output( 53, s.maxSubArray,[-2,1,-3,4,-1,2,1,-5,4] ) #  // Output: 6 
 # leetcode_output( 54, s.spiralOrder,[[1,2,3],[4,5,6],[7,8,9]]) #  // Output: [1,2,3,6,9,8,7,4,5]
-
+# leetcode_output( 55, s.canJump ,[2,3,1,1,4 ) #  // Output: True
