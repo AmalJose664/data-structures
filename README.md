@@ -1,16 +1,25 @@
-﻿# data-structures
+# 📚 Data Structures – LeetCode Progress
 
-Here i have added all the leetcode problems i have done so far.
-Feel free to study, use, share them.
+This repository contains my solutions to various **LeetCode problems** that I’ve worked on so far.  
+All solutions are written in **Python** and organized by difficulty.
 
-code language - Python
-Find all the code in 
-      leetc/easy.py
-      leetc/medium.py
-      leetc/hard.py
+---
 
-Problems are written as functions inside a main class
+## 📂 Repository Structure
 
+You can find the problems categorized into different files:
 
-Call the function using the helper function 
-     leetcode_output( 1, class.function , arg1, arg2) 
+- `leetc/easy.py` – Easy problems  
+- `leetc/medium.py` – Medium problems  
+- `leetc/hard.py` – Hard problems  
+
+Each problem is implemented as a **function inside a main class** for better organization.
+
+---
+
+## ▶️ How to Use
+
+Call any problem’s function using the helper function:
+
+```python
+leetcode_output(1, class.function, arg1, arg2)
