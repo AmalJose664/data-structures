@@ -77,17 +77,35 @@ class NeetCodeBlindQs(object):
 					return output
 		print(output, counter)
 	
-
-
-
+	def encode_decode(self, strs):
+		# 271 medium
+		def encode(self, strs):
+			res = ""
+			for s in strs:
+				res+=str(len(s))+"#"+s
+			return res
+		def decode(self, s):
+			print(s)
+			res, i = [], 0
+			while i < len(s):
+				j = i
+				while s[j] != "#":
+					j+=1
+				length = int(s[i:j])
+				word = s[j+1: j + length + 1]
+				res.append(word)
+				i = j + 1 + length
+			return res
+		return decode(self, encode(self, strs))
+	
 
 
 s = NeetCodeBlindQs()
 
-test_arg1 =[1,2,2,2,3,3,4,4,4,4,5,5,5,5]
+test_arg1 =["Hello","World"]
 test_arg2 = 1
 passes = test_arg2
-leetcode_output( 347, s.topKFrequent, test_arg1, test_arg2) #  // Output: [1, 2]
+out = leetcode_output( 271, s.encode_decode, ["Hello","World"], ) #  // Output: ["Hello","World"]
 # print(out)
 
 
@@ -102,3 +120,4 @@ leetcode_output( 347, s.topKFrequent, test_arg1, test_arg2) #  // Output: [1, 2]
 # leetcode_output( 1,s.twoSum, [2,7,11,15], 9) #  // Output: [0,1]
 # leetcode_output( 49, s.groupAnagrams, ["eat","tea","tan","ate","nat","bat"]) # // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 # leetcode_output( 347, s.topKFrequent,[1,1,1,2,2,3], 2) # // Output: [1, 2]
+# leetcode_output( 271, s.encode_decode, ["Hello","World"], ) #  // Output: ["Hello","World"]
