@@ -98,14 +98,32 @@ class NeetCodeBlindQs(object):
 			return res
 		return decode(self, encode(self, strs))
 	
+	def productExceptSelf(self, nums):
+		# 238 medium
+		print(nums)
+		leng = len(nums)
+		res = [1] * leng
+		# better solution
+		pref =1
+		for i in range(leng):
+			res[i] = pref
+			pref *= nums[i]
+			print(res, pref)
+		postf = 1
+		print("-----------")
+		for i in range(leng -1 , -1, -1):
+			res[i]*= postf
+			postf *= nums[i]
+			
+		return res
 
-
+		
 s = NeetCodeBlindQs()
 
-test_arg1 =["Hello","World"]
+test_arg1 =[1,2,3,4]
 test_arg2 = 1
-passes = test_arg2
-out = leetcode_output( 271, s.encode_decode, ["Hello","World"], ) #  // Output: ["Hello","World"]
+passes = test_arg1
+out = leetcode_output( 238, s.productExceptSelf, passes) #  // Output: [24,12,8,6]
 # print(out)
 
 
@@ -121,3 +139,4 @@ out = leetcode_output( 271, s.encode_decode, ["Hello","World"], ) #  // Output: 
 # leetcode_output( 49, s.groupAnagrams, ["eat","tea","tan","ate","nat","bat"]) # // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 # leetcode_output( 347, s.topKFrequent,[1,1,1,2,2,3], 2) # // Output: [1, 2]
 # leetcode_output( 271, s.encode_decode, ["Hello","World"], ) #  // Output: ["Hello","World"]
+# leetcode_output( 238, s.productExceptSelf, [1,2,3,4,]) #  // Output: [24,12,8,6]
