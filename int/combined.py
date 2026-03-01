@@ -117,13 +117,20 @@ class NeetCodeBlindQs(object):
 			
 		return res
 
+	def longestConsecutive(self, nums):
+		# 128 medium
+		print(nums)
+		nSet = set(nums)
+		nMin = min(nums)
+		print(nSet)
+
 		
 s = NeetCodeBlindQs()
 
-test_arg1 =[1,2,3,4]
+test_arg1 = [100,4,200,1,3,2]
 test_arg2 = 1
 passes = test_arg1
-out = leetcode_output( 238, s.productExceptSelf, passes) #  // Output: [24,12,8,6]
+out = leetcode_output( 128, s.longestConsecutive, passes) #  // Output: 4
 # print(out)
 
 
