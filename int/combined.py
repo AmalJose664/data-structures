@@ -119,12 +119,26 @@ class NeetCodeBlindQs(object):
 
 	def longestConsecutive(self, nums):
 		# 128 medium
-		print(nums)
+		print(len(nums))
+		longest = 0
 		nSet = set(nums)
-		nMin = min(nums)
-		print(nSet)
+		for i in nSet:
+			if (i - 1) not in nSet:
+				length = 0
+				j = i
+				while (j + length) in nSet:
+					length += 1
+				longest = max(longest, length)
+		return longest
 
-		
+
+				
+			
+
+
+
+
+
 s = NeetCodeBlindQs()
 
 test_arg1 = [100,4,200,1,3,2]
@@ -147,3 +161,4 @@ out = leetcode_output( 128, s.longestConsecutive, passes) #  // Output: 4
 # leetcode_output( 347, s.topKFrequent,[1,1,1,2,2,3], 2) # // Output: [1, 2]
 # leetcode_output( 271, s.encode_decode, ["Hello","World"], ) #  // Output: ["Hello","World"]
 # leetcode_output( 238, s.productExceptSelf, [1,2,3,4,]) #  // Output: [24,12,8,6]
+# leetcode_output( 128, s.longestConsecutive, [100,4,200,1,3,2]) #  // Output: 4
