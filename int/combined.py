@@ -131,20 +131,37 @@ class NeetCodeBlindQs(object):
 				longest = max(longest, length)
 		return longest
 
+	def isPalindrome(self, s):
+		# 125 easy
+		print(s)
+		left,right = 0, len(s)-1
+		while left < right:
+			if not s[left].isalnum():
+				left += 1
+				continue
+			if not s[right].isalnum():
+				right -= 1
+				continue
+			if s[left].lower() != s[right].lower():
+				return False
+			left += 1
+			right -= 1
+		return True
+	
+
+			
 
 				
 			
 
 
 
-
-
 s = NeetCodeBlindQs()
 
-test_arg1 = [100,4,200,1,3,2]
+test_arg1 = "Was it a car or a cat I saw?"
 test_arg2 = 1
 passes = test_arg1
-out = leetcode_output( 128, s.longestConsecutive, passes) #  // Output: 4
+out = leetcode_output( 125, s.isPalindrome, "Was it a car or a cat I saw?") #  // Output: True
 # print(out)
 
 
@@ -162,3 +179,4 @@ out = leetcode_output( 128, s.longestConsecutive, passes) #  // Output: 4
 # leetcode_output( 271, s.encode_decode, ["Hello","World"], ) #  // Output: ["Hello","World"]
 # leetcode_output( 238, s.productExceptSelf, [1,2,3,4,]) #  // Output: [24,12,8,6]
 # leetcode_output( 128, s.longestConsecutive, [100,4,200,1,3,2]) #  // Output: 4
+# leetcode_output( 125, s.isPalindrome, "Was it a car or a cat I saw?") #  // Output: True
