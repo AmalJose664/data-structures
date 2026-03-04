@@ -148,20 +148,46 @@ class NeetCodeBlindQs(object):
 			right -= 1
 		return True
 	
+	def threeSum(self, nums):
+		# 15 medium
+		res =[]
+		nums.sort()
+		print(nums)
 
-			
+		for i in range(len(nums)):
+			if i > 0 and nums[i-1] == nums[i]:
+				continue
+			print(nums[i])
+			j=i+1
+			k = len(nums) -1
 
+			while j < k:
+				sum = nums[i] + nums[j] + nums[k]
+				if sum < 0:
+					j += 1
+				elif sum > 0:
+					k -= 1
+				else:
+					res.append([nums[i], nums[j], nums[k]])
+					j += 1
+					while nums[j] == nums[j -1] and j < k:
+						j += 1
 				
-			
+
+		return res
+
+
+
+
 
 
 
 s = NeetCodeBlindQs()
 
-test_arg1 = "Was it a car or a cat I saw?"
+test_arg1 = [-1,0,1,2,-1,-4]
 test_arg2 = 1
 passes = test_arg1
-out = leetcode_output( 125, s.isPalindrome, "Was it a car or a cat I saw?") #  // Output: True
+out = leetcode_output( 15, s.threeSum, passes) #  // Output: [[-1,-1,2],[-1,0,1]]
 # print(out)
 
 
@@ -180,3 +206,4 @@ out = leetcode_output( 125, s.isPalindrome, "Was it a car or a cat I saw?") #  /
 # leetcode_output( 238, s.productExceptSelf, [1,2,3,4,]) #  // Output: [24,12,8,6]
 # leetcode_output( 128, s.longestConsecutive, [100,4,200,1,3,2]) #  // Output: 4
 # leetcode_output( 125, s.isPalindrome, "Was it a car or a cat I saw?") #  // Output: True
+# leetcode_output( 15, s.threeSum,  [-1,0,1,2,-1,-4]) #  // Output: [[-1,-1,2],[-1,0,1]]
