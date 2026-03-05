@@ -176,6 +176,9 @@ class NeetCodeBlindQs(object):
 
 		return res
 
+	def maxArea(self, heights):
+		# 11 medium
+		print(heights)
 
 
 
@@ -184,10 +187,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = [-1,0,1,2,-1,-4]
+test_arg1 = [1,7,2,5,4,7,3,6]
 test_arg2 = 1
 passes = test_arg1
-out = leetcode_output( 15, s.threeSum, passes) #  // Output: [[-1,-1,2],[-1,0,1]]
+out = leetcode_output( 11, s.maxArea, passes) #  // Output: 36
 # print(out)
 
 
