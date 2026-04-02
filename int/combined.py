@@ -200,17 +200,27 @@ class NeetCodeBlindQs(object):
 				r -= 1
 		return maxx
 
-
-
+	def maxProfit(self, prices):
+		# 121 easy
+		print(prices)
+		maxxProfit = 0
+		l, r = 0, 1
+		while r < len(prices):
+			if prices[l] < prices[r]:
+				maxxProfit = max(maxxProfit, prices[r] - prices[l])
+			if prices[r] < prices[l]:
+				l=r
+			r += 1
+		return maxxProfit
 
 
 
 s = NeetCodeBlindQs()
 
-test_arg1 = [1, 7, 2, 5, 4, 7, 3, 6]
+test_arg1 = [10,1,5,6,7,1]
 test_arg2 = 1
 passes = test_arg1
-out = leetcode_output(11, s.maxArea, passes)  #  // Output: 36
+out = leetcode_output(11, s.maxProfit, passes)  #  // Output: 36
 # print(out)
 
 
@@ -225,3 +235,4 @@ out = leetcode_output(11, s.maxArea, passes)  #  // Output: 36
 # leetcode_output( 125, s.isPalindrome, "Was it a car or a cat I saw?") #  // Output: True
 # leetcode_output( 15, s.threeSum,  [-1,0,1,2,-1,-4]) #  // Output: [[-1,-1,2],[-1,0,1]]
 # leetcode_output(11, s.maxArea, [1, 7, 2, 5, 4, 7, 3, 6])  #  // Output: 36
+# leetcode_output(121, s.maxProfit, [10,1,5,6,7,1])  #  // Output: 6
