@@ -213,14 +213,34 @@ class NeetCodeBlindQs(object):
 			r += 1
 		return maxxProfit
 
+	def lengthOfLongestSubstring(self, s):
+		# 3 medium
+		print(s)
+		l= 0 
+		res = 0
+		charSet = set()
+		for r in range(len(s)):
+			while s[r] in charSet:
+				charSet.remove(s[l])
+				l += 1
+			charSet.add(s[r])
+			res = max(res, (r -l) + 1)
+		return res
+
+
+
+
+
+
+
 
 
 s = NeetCodeBlindQs()
 
-test_arg1 = [10,1,5,6,7,1]
+test_arg1 = "pwwkew"
 test_arg2 = 1
 passes = test_arg1
-out = leetcode_output(11, s.maxProfit, passes)  #  // Output: 36
+out = leetcode_output(11, s.lengthOfLongestSubstring, passes)  #  // Output: 3
 # print(out)
 
 
@@ -236,3 +256,4 @@ out = leetcode_output(11, s.maxProfit, passes)  #  // Output: 36
 # leetcode_output( 15, s.threeSum,  [-1,0,1,2,-1,-4]) #  // Output: [[-1,-1,2],[-1,0,1]]
 # leetcode_output(11, s.maxArea, [1, 7, 2, 5, 4, 7, 3, 6])  #  // Output: 36
 # leetcode_output(121, s.maxProfit, [10,1,5,6,7,1])  #  // Output: 6
+# leetcode_output(11, s.lengthOfLongestSubstring, "pwwkew")  #  // Output: 3
