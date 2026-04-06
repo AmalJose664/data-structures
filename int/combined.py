@@ -227,6 +227,26 @@ class NeetCodeBlindQs(object):
 			res = max(res, (r -l) + 1)
 		return res
 
+	def characterReplacement(self, s, k):
+		# 424 medium
+		print(s, k)
+		count = {}
+		res = 0
+		l = 0
+		maxF = 0
+
+		for r in range(len(s)):
+			print_array_with_pointers(s, l, r, (r -l + 1))
+			count[s[r]] = 1 + count.get(s[r], 0)
+			# maxF = max(count[s[r]], maxF)
+			# while (r -l + 1) - maxF > k:
+			while (r -l + 1) - max(count.values()) > k:
+				print(f" updating .{(r -l + 1)}..." , count, max(count.values()))
+				count[s[l]] -= 1
+				l += 1
+			res = max(res, r -l + 1)
+		return res
+
 
 
 
@@ -237,10 +257,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = "pwwkew"
+test_arg1 = "AAABABB"
 test_arg2 = 1
 passes = test_arg1
-out = leetcode_output(11, s.lengthOfLongestSubstring, passes)  #  // Output: 3
+out = leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 5
 # print(out)
 
 
@@ -257,3 +277,4 @@ out = leetcode_output(11, s.lengthOfLongestSubstring, passes)  #  // Output: 3
 # leetcode_output(11, s.maxArea, [1, 7, 2, 5, 4, 7, 3, 6])  #  // Output: 36
 # leetcode_output(121, s.maxProfit, [10,1,5,6,7,1])  #  // Output: 6
 # leetcode_output(11, s.lengthOfLongestSubstring, "pwwkew")  #  // Output: 3
+# leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 5

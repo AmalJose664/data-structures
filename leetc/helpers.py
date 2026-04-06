@@ -149,7 +149,12 @@ def print_array_with_pointers(arr, l, r, endStr="", showLR=False):
 		L=R="^"
 	for num in arr:
 		print(f"{num:>2}", end=" ")
-	print(endStr)
+	if endStr:
+		print(f":: {endStr}")
+	else:
+		print()
+	
+
 
 	for i in range(N):
 		if i == l and i == r:
