@@ -247,6 +247,47 @@ class NeetCodeBlindQs(object):
 			res = max(res, r -l + 1)
 		return res
 
+	def minWindow(self, s, t):
+		# 76 hard
+		print(s,"\n" ,t)
+		if t == "": return ""
+		countT = {}
+		window = {}
+
+		for c in t:
+			countT[c] = countT.get(c, 0) + 1
+		have, need = 0, len(countT)
+		res, resLen = [-1, -1], float("inf")
+		l = 0
+
+		for r in range(len(s)):
+			c= s[r]
+			window[c] = window.get(c, 0) + 1
+
+			if c in countT and window[c] == countT[c]:
+				have += 1
+			while have == need:
+				print_array_with_pointers(s, l, r)
+			
+				if (r-l+1) < resLen:
+					res = [l, r]
+					resLen = (r - l + 1)
+				window[s[l]] -= 1
+				if s[l] in countT and window[s[l]] < countT[s[l]]:
+					have -= 1
+				l += 1
+		l,r = res
+		print(l, r)
+		return s[l:r+1] if resLen != float("inf") else ""
+
+
+	
+
+
+
+
+
+
 
 
 
@@ -257,10 +298,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = "AAABABB"
-test_arg2 = 1
+test_arg1 = "aa"
+test_arg2 = "aa"
 passes = test_arg1
-out = leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 5
+out = leetcode_output(76, s.minWindow, passes, test_arg2)  #  // Output: YXAZ
 # print(out)
 
 
@@ -278,3 +319,4 @@ out = leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 
 # leetcode_output(121, s.maxProfit, [10,1,5,6,7,1])  #  // Output: 6
 # leetcode_output(11, s.lengthOfLongestSubstring, "pwwkew")  #  // Output: 3
 # leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 5
+# leetcode_output(76, s.minWindow, "OUZODYXAZV", "ZYX")  #  // Output: YXAZ
