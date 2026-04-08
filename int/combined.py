@@ -280,6 +280,30 @@ class NeetCodeBlindQs(object):
 		print(l, r)
 		return s[l:r+1] if resLen != float("inf") else ""
 
+	def isValid(self, s):
+		# 20 easy
+		if len(s) % 2 == 1: return False
+		stack = []
+		closeSymbols = {
+			  ")": "(",
+			  "}": "{",
+			  "]": "["
+			  }
+		length = 0
+		for c in s:
+			if c not in closeSymbols: # open symbol
+				length+=1
+				stack.append(c)
+			else: # close symbol
+				if length == 0: return False
+				poped = stack.pop()
+				length -= 1
+				if closeSymbols[c] != poped:
+					return False
+		
+		return length == 0  
+				
+
 
 	
 
@@ -292,16 +316,12 @@ class NeetCodeBlindQs(object):
 
 
 
-
-
-
-
 s = NeetCodeBlindQs()
 
-test_arg1 = "aa"
-test_arg2 = "aa"
+test_arg1 = "(("
+test_arg2 = ""
 passes = test_arg1
-out = leetcode_output(76, s.minWindow, passes, test_arg2)  #  // Output: YXAZ
+out = leetcode_output(20, s.isValid, passes, )  #  // Output: true
 # print(out)
 
 
@@ -320,3 +340,4 @@ out = leetcode_output(76, s.minWindow, passes, test_arg2)  #  // Output: YXAZ
 # leetcode_output(11, s.lengthOfLongestSubstring, "pwwkew")  #  // Output: 3
 # leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 5
 # leetcode_output(76, s.minWindow, "OUZODYXAZV", "ZYX")  #  // Output: YXAZ
+# leetcode_output(20, s.isValid, "((([][])))", )  #  // Output: true
