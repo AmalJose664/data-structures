@@ -303,6 +303,24 @@ class NeetCodeBlindQs(object):
 		
 		return length == 0  
 				
+	def findMin(self, nums):
+		# 153 medium
+		print(nums)
+		l = 0
+		r = len(nums) -1
+		minimum = nums[0]
+		while l <= r:
+			print_array_with_pointers(nums, l, r)
+			if nums[l] < nums[r]:
+				minimum = min(minimum, nums[l])
+				break
+			mid = (l + r) //2
+			minimum = min(minimum, nums[mid])
+			if nums[mid] >= nums[l]:
+				l = mid + 1
+			else:
+				r = mid - 1
+		return minimum
 
 
 	
@@ -318,10 +336,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = "(("
+test_arg1 = [3,4,5,6,1,2]
 test_arg2 = ""
 passes = test_arg1
-out = leetcode_output(20, s.isValid, passes, )  #  // Output: true
+out = leetcode_output(153, s.findMin, passes, )  #  // Output: 1
 # print(out)
 
 
@@ -341,3 +359,4 @@ out = leetcode_output(20, s.isValid, passes, )  #  // Output: true
 # leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 5
 # leetcode_output(76, s.minWindow, "OUZODYXAZV", "ZYX")  #  // Output: YXAZ
 # leetcode_output(20, s.isValid, "((([][])))", )  #  // Output: true
+leetcode_output(153, s.findMin, [3,4,5,6,1,2] )  #  // Output: 1
