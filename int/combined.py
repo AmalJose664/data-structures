@@ -322,8 +322,25 @@ class NeetCodeBlindQs(object):
 				r = mid - 1
 		return minimum
 
-
-	
+	def search(self, nums, target):
+		# 33 medium
+		print(nums, target, "\n")
+		l = 0
+		r = len(nums) -1
+		while l <= r:
+			mid = (l + r) //2
+			if nums[mid] == target:
+				return mid			
+			if nums[l] <= nums[mid]:
+				if target > nums[mid]  or target < nums[l]:
+					l = mid + 1
+				else:
+					r = mid - 1
+			else: 
+				if target < nums[mid] or target> nums[r]:
+					r = mid - 1
+				else: 
+					l = mid + 1
 
 
 
@@ -336,10 +353,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = [3,4,5,6,1,2]
-test_arg2 = ""
+test_arg1 = [4,5,6,7,0,1,2]
+test_arg2 = 4
 passes = test_arg1
-out = leetcode_output(153, s.findMin, passes, )  #  // Output: 1
+out = leetcode_output(33, s.search, passes, test_arg2)  #  // Output: 4
 # print(out)
 
 
@@ -359,4 +376,5 @@ out = leetcode_output(153, s.findMin, passes, )  #  // Output: 1
 # leetcode_output(424, s.characterReplacement, "AAABABB", 1)  #  // Output: 5
 # leetcode_output(76, s.minWindow, "OUZODYXAZV", "ZYX")  #  // Output: YXAZ
 # leetcode_output(20, s.isValid, "((([][])))", )  #  // Output: true
-leetcode_output(153, s.findMin, [3,4,5,6,1,2] )  #  // Output: 1
+# leetcode_output(153, s.findMin, [3,4,5,6,1,2] )  #  // Output: 1
+leetcode_output(33, s.search, [4,5,6,7,0,1,2], 0)  #  // Output: 4
