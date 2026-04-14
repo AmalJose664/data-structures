@@ -342,6 +342,39 @@ class NeetCodeBlindQs(object):
 				else: 
 					l = mid + 1
 
+	def reverseList(self, head):
+		#206 easy
+		showNodes(head)
+		prev = None
+		while head:
+			t=head.next
+			head.next = prev
+			prev = head
+			head = t
+		showNodes(prev)
+		return prev
+		
+	def mergeTwoLists(self, list1, list2):
+		# 21 easy
+		showNodes(list1)
+		showNodes(list2)
+		dumy = ListNode()
+		tail = dumy
+		while list1 and list2:
+			if list1.val < list2.val:
+				tail.next = list1
+				list1 = list1.next
+			else:
+				tail.next = list2
+				list2 = list2.next 
+			tail = tail.next
+		if list1:
+			tail.next = list1
+		elif list2:
+			tail.next = list2
+
+		showNodes(dumy)
+		return dumy.next
 
 
 
@@ -353,10 +386,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = [4,5,6,7,0,1,2]
-test_arg2 = 4
+test_arg1 = buildNodes([1,2,4])
+test_arg2 = buildNodes([1,3,5])
 passes = test_arg1
-out = leetcode_output(33, s.search, passes, test_arg2)  #  // Output: 4
+out = leetcode_output(21, s.mergeTwoLists, passes, test_arg2)  #  // Output: buildNodes([1,1,2,3,4,5])
 # print(out)
 
 
@@ -377,4 +410,6 @@ out = leetcode_output(33, s.search, passes, test_arg2)  #  // Output: 4
 # leetcode_output(76, s.minWindow, "OUZODYXAZV", "ZYX")  #  // Output: YXAZ
 # leetcode_output(20, s.isValid, "((([][])))", )  #  // Output: true
 # leetcode_output(153, s.findMin, [3,4,5,6,1,2] )  #  // Output: 1
-leetcode_output(33, s.search, [4,5,6,7,0,1,2], 0)  #  // Output: 4
+# leetcode_output(33, s.search, [4,5,6,7,0,1,2], 0)  #  // Output: 4
+# out = leetcode_output(206, s.reverseList, buildNodes([0,1,2,3]))  #  // Output: buildNodes([3,2,1,0])
+# out = leetcode_output(21, s.mergeTwoLists, buildNodes([1,2,4]), buildNodes([1,3,5]))  #  // Output: buildNodes([1,1,2,3,4,5])
