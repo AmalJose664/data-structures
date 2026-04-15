@@ -2,6 +2,7 @@ from collections import Counter, defaultdict
 import heapq
 import sys
 import os
+from time import sleep
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -376,7 +377,27 @@ class NeetCodeBlindQs(object):
 		showNodes(dumy)
 		return dumy.next
 
+	def hasCycle(self, head):
+		# 141 easy
+		print(head)
+		slow = head
+		fast = head
 
+		while fast:
+			slow = slow.next
+			if fast.next :
+				fast = fast.next.next 
+			else: return False
+			
+			if slow == fast:
+				return True
+		return False
+
+
+
+
+
+		
 
 
 
@@ -386,10 +407,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = buildNodes([1,2,4])
+test_arg1 = ListNode(1, next=ListNode(2, next= ListNode(3,)))
 test_arg2 = buildNodes([1,3,5])
-passes = test_arg1
-out = leetcode_output(21, s.mergeTwoLists, passes, test_arg2)  #  // Output: buildNodes([1,1,2,3,4,5])
+passes = test_arg2
+out = leetcode_output(141, s.hasCycle, buildNodes([1,3,5]))  #  // Output: False
 # print(out)
 
 
@@ -411,5 +432,6 @@ out = leetcode_output(21, s.mergeTwoLists, passes, test_arg2)  #  // Output: bui
 # leetcode_output(20, s.isValid, "((([][])))", )  #  // Output: true
 # leetcode_output(153, s.findMin, [3,4,5,6,1,2] )  #  // Output: 1
 # leetcode_output(33, s.search, [4,5,6,7,0,1,2], 0)  #  // Output: 4
-# out = leetcode_output(206, s.reverseList, buildNodes([0,1,2,3]))  #  // Output: buildNodes([3,2,1,0])
-# out = leetcode_output(21, s.mergeTwoLists, buildNodes([1,2,4]), buildNodes([1,3,5]))  #  // Output: buildNodes([1,1,2,3,4,5])
+# leetcode_output(206, s.reverseList, buildNodes([0,1,2,3]))  #  // Output: buildNodes([3,2,1,0])
+# leetcode_output(21, s.mergeTwoLists, buildNodes([1,2,4]), buildNodes([1,3,5]))  #  // Output: buildNodes([1,1,2,3,4,5])
+# leetcode_output(141, s.hasCycle, buildNodes([1,3,5]))  #  // Output: False // to make cycle use ListNode(0,next=node) & node.next = node2
