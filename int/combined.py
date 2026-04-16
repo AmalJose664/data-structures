@@ -393,7 +393,21 @@ class NeetCodeBlindQs(object):
 				return True
 		return False
 
+	def reorderList(self, head):
+		showNodes(head)
+		slow = head 
+		fast = head.next
 
+		while slow:
+			print( slow, fast)
+			if fast.next:
+				fast = fast.next.next
+			slow = slow.next
+		
+		
+			
+		
+		
 
 
 
@@ -407,10 +421,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = ListNode(1, next=ListNode(2, next= ListNode(3,)))
+test_arg1 = buildNodes([2,4,6,8,10])
 test_arg2 = buildNodes([1,3,5])
-passes = test_arg2
-out = leetcode_output(141, s.hasCycle, buildNodes([1,3,5]))  #  // Output: False
+passes = test_arg1
+out = leetcode_output(141, s.reorderList, passes)  #  // Output: None
 # print(out)
 
 
