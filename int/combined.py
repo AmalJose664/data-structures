@@ -394,15 +394,34 @@ class NeetCodeBlindQs(object):
 		return False
 
 	def reorderList(self, head):
+		# 143 medium
 		showNodes(head)
 		slow = head 
 		fast = head.next
-
-		while slow:
-			print( slow, fast)
-			if fast.next:
-				fast = fast.next.next
+		
+		while fast and fast.next:
 			slow = slow.next
+			fast = fast.next.next
+
+		second = slow.next
+		slow.next = None
+		prev = None
+
+		while second:
+			tmp = second.next
+			second.next = prev
+			prev = second
+			second = tmp
+		first = head
+		second = prev
+		while second:
+			tmp1 = first.next
+			tmp2 = second.next
+			first.next = second
+			second.next = tmp1
+			first = tmp1
+			second = tmp2
+		showNodes(head)
 		
 		
 			
@@ -424,7 +443,7 @@ s = NeetCodeBlindQs()
 test_arg1 = buildNodes([2,4,6,8,10])
 test_arg2 = buildNodes([1,3,5])
 passes = test_arg1
-out = leetcode_output(141, s.reorderList, passes)  #  // Output: None
+out = leetcode_output(143, s.reorderList, passes)  #  // Output: None
 # print(out)
 
 
@@ -449,3 +468,4 @@ out = leetcode_output(141, s.reorderList, passes)  #  // Output: None
 # leetcode_output(206, s.reverseList, buildNodes([0,1,2,3]))  #  // Output: buildNodes([3,2,1,0])
 # leetcode_output(21, s.mergeTwoLists, buildNodes([1,2,4]), buildNodes([1,3,5]))  #  // Output: buildNodes([1,1,2,3,4,5])
 # leetcode_output(141, s.hasCycle, buildNodes([1,3,5]))  #  // Output: False // to make cycle use ListNode(0,next=node) & node.next = node2
+leetcode_output(143, s.reorderList, buildNodes([2,4,6,8,10]))  #  // Output: None 2-> 10-> 4-> 8-> 6-> -|
