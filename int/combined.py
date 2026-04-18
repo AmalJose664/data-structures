@@ -423,9 +423,54 @@ class NeetCodeBlindQs(object):
 			second = tmp2
 		showNodes(head)
 		
+	def removeNthFromEnd(self, head, n): 	
+		# 19 medium
+		showNodes(head)
+		print(n)
+
+		# fast =head
+		# slow = head
+
+		# for i in range(n):
+		# 	fast = fast.next
+		# if fast is None:
+		# 	return head.next
+		# while fast.next is not None:
+		# 	fast = fast.next
+		# 	slow = slow.next
+		# slow.next = slow.next.next
+
+		# showNodes(head)
+		# return head
+
+		temp = head
+		i=0
+		prev = None
+		while temp:
+			i+=1
+			tmp = temp.next
+			temp.next = prev
+			prev = temp
+			temp = tmp
 		
-			
+		temp = prev
+		prev = None
+		j = 0
 		
+		while temp:
+			j+=1
+			if j ==n:
+				temp = temp.next
+				if n == i:
+					return prev
+			print(temp)
+			tmp = temp.next
+			temp.next = prev
+			prev = temp
+			temp = tmp
+		showNodes(prev)
+		return prev
+
 		
 
 
@@ -440,10 +485,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = buildNodes([2,4,6,8,10])
-test_arg2 = buildNodes([1,3,5])
+test_arg1 = buildNodes([3,6,9,12, 15, 18,21,24,27,30])
+test_arg2 = 2
 passes = test_arg1
-out = leetcode_output(143, s.reorderList, passes)  #  // Output: None
+out = leetcode_output(19, s.removeNthFromEnd, passes, test_arg2)  #  // Output: [1,2,4]
 # print(out)
 
 
@@ -468,4 +513,5 @@ out = leetcode_output(143, s.reorderList, passes)  #  // Output: None
 # leetcode_output(206, s.reverseList, buildNodes([0,1,2,3]))  #  // Output: buildNodes([3,2,1,0])
 # leetcode_output(21, s.mergeTwoLists, buildNodes([1,2,4]), buildNodes([1,3,5]))  #  // Output: buildNodes([1,1,2,3,4,5])
 # leetcode_output(141, s.hasCycle, buildNodes([1,3,5]))  #  // Output: False // to make cycle use ListNode(0,next=node) & node.next = node2
-leetcode_output(143, s.reorderList, buildNodes([2,4,6,8,10]))  #  // Output: None 2-> 10-> 4-> 8-> 6-> -|
+# leetcode_output(143, s.reorderList, buildNodes([2,4,6,8,10]))  #  // Output: None 2-> 10-> 4-> 8-> 6-> -|
+# leetcode_output(19, s.removeNthFromEnd, buildNodes([1,2,3,4]), 2)  #  // Output: [1,2,4]
