@@ -471,12 +471,38 @@ class NeetCodeBlindQs(object):
 		showNodes(prev)
 		return prev
 
+	def mergeKLists(self, lists):
+		# 23 hard
+		length = len(lists)
+		if length == 0: return None
 		
-
-
-
+		def combineList(l1, l2):
+			dumy = ListNode()
+			tail = dumy
+			while l1 and l2:		
+				if l1.val < l2.val:
+					tail.next = l1
+					l1 = l1.next
+				else:
+					tail.next = l2
+					l2 = l2.next
+				tail = tail.next
+			if l1:
+				tail.next = l1
+			elif l2:
+				tail.next = l2
+			return dumy.next
 		
-
+		while len(lists) > 1:
+			mergedLists = []
+			for i in range(0, len(lists), 2):
+				l1 =lists[i]
+				l2 = lists[i + 1] if i+1 < len(lists) else None
+				mergedLists.append(combineList(l1, l2))
+			lists = mergedLists
+		
+		return lists[0]
+		
 
 
 
@@ -485,10 +511,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 = buildNodes([3,6,9,12, 15, 18,21,24,27,30])
+test_arg1 =  [buildNodes([1,2,4]), buildNodes([1,3,5]), buildNodes([3,6])]
 test_arg2 = 2
 passes = test_arg1
-out = leetcode_output(19, s.removeNthFromEnd, passes, test_arg2)  #  // Output: [1,2,4]
+out = leetcode_output(23, s.mergeKLists, passes)  #  // Output: [1,1,2,3,3,4,5,6]
 # print(out)
 
 
@@ -515,3 +541,4 @@ out = leetcode_output(19, s.removeNthFromEnd, passes, test_arg2)  #  // Output: 
 # leetcode_output(141, s.hasCycle, buildNodes([1,3,5]))  #  // Output: False // to make cycle use ListNode(0,next=node) & node.next = node2
 # leetcode_output(143, s.reorderList, buildNodes([2,4,6,8,10]))  #  // Output: None 2-> 10-> 4-> 8-> 6-> -|
 # leetcode_output(19, s.removeNthFromEnd, buildNodes([1,2,3,4]), 2)  #  // Output: [1,2,4]
+# leetcode_output(23, s.mergeKLists, [buildNodes([1,2,4]), buildNodes([1,3,5]), buildNodes([3,6])])  #  // Output: [1,1,2,3,3,4,5,6]
