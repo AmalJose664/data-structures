@@ -8,10 +8,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from leetc.helpers import (
 	ListNode,
+	TreeNode,
 	buildNodes,
+	create_bst_tree,
 	leetcode_output,
 	print_array_with_pointers,
 	print_matrix,
+	print_tree_vertical,
 	showNodes,
 )
 
@@ -503,6 +506,20 @@ class NeetCodeBlindQs(object):
 		
 		return lists[0]
 		
+	def invertTree(self, root):
+		# 226 easy
+		print_tree_vertical(root)
+		print()
+		def traverse(node):
+			if not node:
+				return None
+			tmp = node.left
+			node.left = node.right
+			node.right = tmp
+			traverse(node.left)
+			traverse(node.right)
+		traverse(root)
+		print_tree_vertical(root)
 
 
 
@@ -511,10 +528,10 @@ class NeetCodeBlindQs(object):
 
 s = NeetCodeBlindQs()
 
-test_arg1 =  [buildNodes([1,2,4]), buildNodes([1,3,5]), buildNodes([3,6])]
-test_arg2 = 2
-passes = test_arg1
-out = leetcode_output(23, s.mergeKLists, passes)  #  // Output: [1,1,2,3,3,4,5,6]
+test_arg1 =  TreeNode(3,right=TreeNode(1), left=TreeNode(2))
+test_arg2 = create_bst_tree(226)
+passes = test_arg2
+out = leetcode_output(226, s.invertTree, create_bst_tree(226))  #  // Output: [4,7,2,9,6,3,1]
 # print(out)
 
 
@@ -542,3 +559,4 @@ out = leetcode_output(23, s.mergeKLists, passes)  #  // Output: [1,1,2,3,3,4,5,6
 # leetcode_output(143, s.reorderList, buildNodes([2,4,6,8,10]))  #  // Output: None 2-> 10-> 4-> 8-> 6-> -|
 # leetcode_output(19, s.removeNthFromEnd, buildNodes([1,2,3,4]), 2)  #  // Output: [1,2,4]
 # leetcode_output(23, s.mergeKLists, [buildNodes([1,2,4]), buildNodes([1,3,5]), buildNodes([3,6])])  #  // Output: [1,1,2,3,3,4,5,6]
+# leetcode_output(226, s.invertTree, create_bst_tree(226))  #  // Output: [4,7,2,9,6,3,1]

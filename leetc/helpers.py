@@ -11,10 +11,12 @@ class ListNode(object):
 		return f"LNode-{self.val}"
 
 class TreeNode(object):
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+	def __init__(self, val=0, left=None, right=None):
+		self.val = val
+		self.left = left
+		self.right = right
+	def __str__(self):
+		return f"TNode-{self.val} {"L" if self.left else ""}{"R" if self.right else ""}"
 
 class Intervals(object):
 	def __init__(self, start, end):
@@ -39,74 +41,74 @@ def leetcode_output(number, output, *args, **kwargs):
 
 
 def create_bst_tree(problem: int):
-    def tree_270():
-        return TreeNode(4,
-                        left=TreeNode(2, left=TreeNode(1), right=TreeNode(3)),
-                        right=TreeNode(5))
+	def tree_270():
+		return TreeNode(4,
+						left=TreeNode(2, left=TreeNode(1), right=TreeNode(3)),
+						right=TreeNode(5))
 
-    def tree_257():
-        return TreeNode(1,
-                        left=TreeNode(2, right=TreeNode(5)),
-                        right=TreeNode(3))
+	def tree_257():
+		return TreeNode(1,
+						left=TreeNode(2, right=TreeNode(5)),
+						right=TreeNode(3))
 
-    def tree_226():
-        return TreeNode(4,
-                        left=TreeNode(2, left=TreeNode(1), right=TreeNode(3)),
-                        right=TreeNode(7, left=TreeNode(6), right=TreeNode(9)))
+	def tree_226():
+		return TreeNode(4,
+						left=TreeNode(2, left=TreeNode(1), right=TreeNode(3)),
+						right=TreeNode(7, left=TreeNode(6), right=TreeNode(9)))
 
-    def tree_222():
-        return TreeNode(1,
-                        left=TreeNode(2, left=TreeNode(4), right=TreeNode(5)),
-                        right=TreeNode(3, left=TreeNode(6)))
+	def tree_222():
+		return TreeNode(1,
+						left=TreeNode(2, left=TreeNode(4), right=TreeNode(5)),
+						right=TreeNode(3, left=TreeNode(6)))
 
-    def tree_144_145():
-        return TreeNode(1,
-                        left=TreeNode(2,
-                                      left=TreeNode(4),
-                                      right=TreeNode(5, left=TreeNode(6), right=TreeNode(7))),
-                        right=TreeNode(3, right=TreeNode(8, left=TreeNode(9))))
+	def tree_144_145():
+		return TreeNode(1,
+						left=TreeNode(2,
+									left=TreeNode(4),
+									right=TreeNode(5, left=TreeNode(6), right=TreeNode(7))),
+						right=TreeNode(3, right=TreeNode(8, left=TreeNode(9))))
 
-    def tree_112():
-        return TreeNode(5,
-                        left=TreeNode(4,
-                                      left=TreeNode(11, left=TreeNode(7), right=TreeNode(2))),
-                        right=TreeNode(8,
-                                       left=TreeNode(13),
-                                       right=TreeNode(4, right=TreeNode(1))))
+	def tree_112():
+		return TreeNode(5,
+						left=TreeNode(4,
+									left=TreeNode(11, left=TreeNode(7), right=TreeNode(2))),
+						right=TreeNode(8,
+									left=TreeNode(13),
+									right=TreeNode(4, right=TreeNode(1))))
 
-    def tree_110_111_104():
-        return TreeNode(3,
-                        left=TreeNode(9),
-                        right=TreeNode(20, left=TreeNode(15), right=TreeNode(7)))
+	def tree_110_111_104():
+		return TreeNode(3,
+						left=TreeNode(9),
+						right=TreeNode(20, left=TreeNode(15), right=TreeNode(7)))
 
-    def tree_101():
-        return TreeNode(1,
-                        left=TreeNode(2, left=TreeNode(4), right=TreeNode(3)),
-                        right=TreeNode(2, left=TreeNode(3), right=TreeNode(4)))
+	def tree_101():
+		return TreeNode(1,
+						left=TreeNode(2, left=TreeNode(4), right=TreeNode(3)),
+						right=TreeNode(2, left=TreeNode(3), right=TreeNode(4)))
 
-    def tree_94():
-        return TreeNode(1, right=TreeNode(2, left=TreeNode(3)))
+	def tree_94():
+		return TreeNode(1, right=TreeNode(2, left=TreeNode(3)))
 
-    def tree_100():
-        return TreeNode(1, right=TreeNode(2, left=TreeNode(3)))
+	def tree_100():
+		return TreeNode(1, right=TreeNode(2, left=TreeNode(3)))
 
-    tree_map = {
-        270: tree_270,
-        257: tree_257,
-        226: tree_226,
-        222: tree_222,
-        144: tree_144_145,
-        145: tree_144_145,
-        112: tree_112,
-        110: tree_110_111_104,
-        111: tree_110_111_104,
-        104: tree_110_111_104,
-        101: tree_101,
-        94:  tree_94,
-        100: tree_100,
-    }
+	tree_map = {
+		270: tree_270,
+		257: tree_257,
+		226: tree_226,
+		222: tree_222,
+		144: tree_144_145,
+		145: tree_144_145,
+		112: tree_112,
+		110: tree_110_111_104,
+		111: tree_110_111_104,
+		104: tree_110_111_104,
+		101: tree_101,
+		94:  tree_94,
+		100: tree_100,
+	}
 
-    return tree_map.get(problem, lambda: None)()
+	return tree_map.get(problem, lambda: None)()
 
 
 
@@ -130,13 +132,13 @@ def showNodes(node):
 file_content = "leetcode"
 file_pointer = 0
 def read4(buf4: list) -> int:
-    global file_content, file_pointer
-    count = 0
-    while count < 4 and file_pointer < len(file_content):
-        buf4[count] = file_content[file_pointer]
-        file_pointer += 1
-        count += 1
-    return count
+	global file_content, file_pointer
+	count = 0
+	while count < 4 and file_pointer < len(file_content):
+		buf4[count] = file_content[file_pointer]
+		file_pointer += 1
+		count += 1
+	return count
 
 
 def print_array_with_pointers(arr, l, r, endStr="", showLR=False):
